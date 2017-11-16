@@ -7,6 +7,8 @@ app.use('/wiki', wiki);
 var logger = require('morgan');
 app.use(logger('dev'));
 
+app.use('/media', express.static('pulbic'));
+
 app.get('/', function(req, res) {
   res.send('Hello World!');
 });
@@ -31,7 +33,10 @@ app.get('/', a_middleware_function);
 
 
 
-
+app.use(function(err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
 
 app.listen(3000, function() {
