@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
 
+var wiki = require('./wiki.js');
+app.use('/wiki', wiki);
+
 app.get('/', function(req, res) {
   res.send('Hello World!');
 });
