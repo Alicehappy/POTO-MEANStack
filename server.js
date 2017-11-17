@@ -7,7 +7,22 @@ app.use('/wiki', wiki);
 var logger = require('morgan');
 app.use(logger('dev'));
 
-app.use('/media', express.static('pulbic'));
+app.use('/media', express.static('public'));
+
+var MongoClient = require('mongodb').MongoClient;
+
+MongoClient.connect('mongodb://localhost:27017/animals', function(err, db) {
+  if (err) throw err;
+
+  db.collection('mammals').find().toArray(function (err, result) {
+    if (err) throw err;
+
+    console.log(result);
+  });
+});
+
+
+
 
 app.get('/', function(req, res) {
   res.send('Hello World!');
