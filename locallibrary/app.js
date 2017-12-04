@@ -11,6 +11,9 @@ var catalog = require('./routes/catalog'); //Import routes for "catalog" area of
 
 var app = express();
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 
 //Set up mongoose connection
